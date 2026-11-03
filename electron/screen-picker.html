@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self'; style-src 'self'; img-src data:;"
+    />
+    <title>Choose a screen</title>
+    <link rel="stylesheet" href="screen-picker.css" />
+  </head>
+  <body>
+    <header>
+      <p>LOCAL PREVIEW</p>
+      <h1>What would you like to preview?</h1>
+      <span>Choose a screen or window. This preview is visible only to you.</span>
+    </header>
+    <main id="sources" aria-label="Screens and windows"></main>
+    <footer><button id="cancel">Cancel</button></footer>
+    <script src="screen-picker.js"></script>
+  </body>
+</html>

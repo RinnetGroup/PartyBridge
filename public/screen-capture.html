@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PartyBridge · Screen capture preview</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="capture-page">
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h1 class="volume-title">Preview your PC screen</h1>
+            <p class="muted">Choose a screen, window, or browser tab.</p>
+          </div>
+        </div>
+        <p class="capture-notice">
+          <strong>Local preview only.</strong> PC broadcasting to PlayStation parties is not
+          available yet. Party members cannot see this preview.
+        </p>
+        <label class="capture-audio"
+          ><input type="checkbox" id="capture-audio" /> Include source audio when the browser
+          supports it</label
+        >
+        <div class="capture-actions">
+          <button class="primary" id="capture-start">Choose screen to preview</button
+          ><button class="quiet" id="capture-stop" disabled>Stop preview</button>
+        </div>
+        <p id="capture-status" class="muted" role="status" aria-live="polite">
+          Nothing is being captured. Your party call stays open in its original tab.
+        </p>
+        <video id="capture-preview" muted autoplay playsinline hidden></video>
+      </section>
+    </main>
+    <script type="module" src="/screen-capture.js"></script>
+  </body>
+</html>

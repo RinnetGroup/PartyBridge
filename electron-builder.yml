@@ -1,0 +1,51 @@
+appId: partybridge.release
+productName: PartyBridge
+executableName: PartyBridgeRelease
+asar: false
+npmRebuild: false
+directories:
+  output: dist
+  buildResources: build
+files:
+  - electron/**/*
+  - server/**/*
+  - protocol/**/*
+  - public/**/*
+  - package.json
+  - LICENSE
+  - THIRD-PARTY-NOTICES.txt
+extraResources:
+  - from: .desktop-runtime/node
+    to: node
+    filter:
+      - node.exe
+      - LICENSE
+      - runtime.json
+  - from: build/voice-firewall.ps1
+    to: scripts/voice-firewall.ps1
+  - from: docs/INSTALL.md
+    to: INSTALL.md
+win:
+  icon: electron/assets/app.ico
+  target:
+    - target: nsis
+      arch: [x64]
+    - target: zip
+      arch: [x64]
+  artifactName: PartyBridge-${version}-${arch}.${ext}
+nsis:
+  artifactName: PartyBridge-Setup-${version}-${arch}.${ext}
+  oneClick: false
+  perMachine: false
+  allowElevation: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: PartyBridge Release
+  uninstallDisplayName: PartyBridge (Release)
+  runAfterFinish: false
+  deleteAppDataOnUninstall: false
+  installerIcon: electron/assets/app.ico
+  uninstallerIcon: electron/assets/app.ico
+  license: LICENSE
+publish: null

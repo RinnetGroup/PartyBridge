@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.desktop-runtime/
+.local/
+logs/
+public/vendor/
+patches/
+package-lock.json
+LICENSE
+THIRD-PARTY-NOTICES.txt

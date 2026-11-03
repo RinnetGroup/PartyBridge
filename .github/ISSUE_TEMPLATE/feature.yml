@@ -1,0 +1,17 @@
+name: Feature request
+description: Suggest a change to PartyBridge.
+title: '[Feature] '
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What would this help you do?
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested behavior
+    validations:
+      required: true

@@ -1,0 +1,33 @@
+name: Build Windows release
+on:
+  workflow_dispatch:
+  push:
+    tags: ['v*']
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run check
+      - run: npm run format:check
+      - run: npm run release:build
+      - run: npm run release:verify
+      - uses: actions/upload-artifact@v7.0.2
+        with:
+          name: PartyBridge-Windows-x64
+          if-no-files-found: error
+          retention-days: 14
+          path: |
+            dist/PartyBridge-Setup-*-x64.exe
+            dist/PartyBridge-*-x64.zip
+            dist/SHA256SUMS.txt

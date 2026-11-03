@@ -1,0 +1,46 @@
+name: Bug report
+description: Report a problem with PartyBridge.
+title: '[Bug] '
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: 'Do not include credentials, NPSSO, tokens, saved login files or unreviewed logs. Use fictional account names.'
+  - type: input
+    id: version
+    attributes:
+      label: App version
+      placeholder: '0.1.0'
+    validations:
+      required: true
+  - type: dropdown
+    id: devices
+    attributes:
+      label: Devices involved
+      multiple: true
+      options: [PartyBridge, PS5, PS4, PS App]
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: What happened?
+      description: Include what you expected and any visible error.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Describe the sequence, including party joins, departures or screen viewing if relevant.
+    validations:
+      required: true
+  - type: input
+    id: time
+    attributes:
+      label: Approximate failure time and time zone
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional details
+      description: Share only relevant log excerpts after removing private data.

@@ -1,0 +1,37 @@
+PartyBridge UI includes adaptations of Pin UI Liquid Voice and Selection List.
+Original component styles: public/vendor/pinui/*.css.
+Source registries, retrieved 2026-11-03:
+https://www.pinui.xyz/r/liquid-voice.json
+https://www.pinui.xyz/r/selection-list.json
+Pin UI terms (components licensed MIT): https://www.pinui.xyz/terms
+
+Copyright (c) 2026 Pin UI and its contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+The desktop distribution also contains Electron (see its LICENSE and
+LICENSES.chromium.html), a bundled stock Node runtime (resources/node/LICENSE),
+and npm dependencies with their own notices and licences in node_modules.
+Pin UI demo photographs, recordings, name and logo are not included.
+
+The pinned werift 0.25.2 ESM bundle is modified for Sony WebRTC compatibility.
+The reviewed changes are recorded in patches/werift-0.25.2.diff and reproduced
+by scripts/apply-werift-compat.mjs. Werift retains its upstream MIT license,
+distributed with its npm package. Other npm dependency licenses remain in
+their corresponding node_modules packages.

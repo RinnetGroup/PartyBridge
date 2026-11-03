@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PartyBridge</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/hub.css" />
+    <link rel="stylesheet" href="/pinui/liquid-voice.css" />
+    <link rel="stylesheet" href="/pinui/selection-list.css" />
+    <link rel="stylesheet" href="/desktop-ui.css" />
+  </head>
+  <body>
+    <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true" hidden></div>
+    <div class="desktop-titlebar" id="desktop-titlebar" hidden>
+      <img src="/icon.svg" alt="" /><span>PartyBridge</span>
+    </div>
+
+    <aside class="app-sidebar">
+      <div class="brand">
+        <img class="logo" src="/icon.svg" alt="" />
+        <div>
+          <div class="brand-name">PartyBridge</div>
+        </div>
+      </div>
+      <nav id="app-nav" class="app-nav" aria-label="Main navigation"></nav>
+      <div class="sidebar-bottom">
+        <span class="helper" id="helper"
+          ><span class="dot" id="helper-dot"></span><span id="helper-label">Starting</span></span
+        >
+        <button class="chip" id="account-chip">
+          <span class="avatar" id="account-avatar">?</span
+          ><span id="account-name">Connect account</span>
+        </button>
+      </div>
+    </aside>
+
+    <main>
+      <div id="party-page">
+        <header class="page-heading"><h1>Parties</h1></header>
+        <section class="party-summary" aria-label="Party overview">
+          <div class="lounge-stats">
+            <div><strong id="lounge-party-count">0</strong><span>Available parties</span></div>
+            <div><strong id="lounge-people-count">0</strong><span>People in parties</span></div>
+            <div><strong id="lounge-voice-status">Ready</strong><span>Your voice</span></div>
+          </div>
+        </section>
+        <section class="panel screens-panel" id="screens-panel" hidden>
+          <div class="panel-head">
+            <div>
+              <h2>Share Screen</h2>
+              <p class="muted">Watch a screen shared in your party</p>
+            </div>
+          </div>
+          <div id="screen-streams"></div>
+          <p class="muted" id="screen-empty">No one is sharing a screen right now.</p>
+          <div id="screen-viewer" hidden>
+            <video id="screen-video" controls autoplay playsinline></video>
+            <div class="screen-actions">
+              <button class="quiet small" id="screen-fullscreen">Full screen</button
+              ><button class="quiet small" id="screen-stop" disabled>Stop watching</button>
+            </div>
+          </div>
+          <p id="screen-status" class="muted" role="status" aria-live="polite"></p>
+        </section>
+        <section class="welcome" id="welcome" hidden>
+          <h1>Connect your account</h1>
+          <p>Sign in to see your parties and join voice from this PC.</p>
+          <button class="primary" id="welcome-connect">Connect account</button>
+        </section>
+
+        <div class="columns">
+          <section class="panel parties-panel">
+            <div class="panel-head">
+              <div>
+                <h2>Available parties</h2>
+                <p class="muted" id="parties-caption">Open and joinable parties</p>
+              </div>
+              <div class="party-toolbar">
+                <button class="primary" id="start-party" disabled>Start party</button
+                ><button class="quiet" id="refresh-parties" disabled>Refresh</button>
+              </div>
+            </div>
+            <div class="party-grid" id="party-grid"></div>
+            <div class="empty" id="party-empty">
+              <h3>No parties</h3>
+              <p>Connect your account to see your parties.</p>
+            </div>
+          </section>
+
+          <aside class="side">
+            <section class="panel audio-panel">
+              <div class="panel-head"><h2>Audio</h2></div>
+              <div
+                class="plvoice"
+                id="input-voice-meter"
+                data-theme="dark"
+                data-gl="none"
+                aria-label="Microphone input level"
+              >
+                <div class="plvoice__pill">
+                  <span class="voice-mic" aria-hidden="true"
+                    ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <rect x="9" y="2" width="6" height="12" rx="3" />
+                      <path d="M5 10v2a7 7 0 0 0 14 0v-2m-7 9v3" /></svg
+                  ></span>
+                  <div class="plvoice__wave" aria-hidden="true">
+                    <i class="plvoice__bar"></i><i class="plvoice__bar"></i
+                    ><i class="plvoice__bar"></i><i class="plvoice__bar"></i
+                    ><i class="plvoice__bar"></i><i class="plvoice__bar"></i
+                    ><i class="plvoice__bar"></i><i class="plvoice__bar"></i
+                    ><i class="plvoice__bar"></i><i class="plvoice__bar"></i
+                    ><i class="plvoice__bar"></i><i class="plvoice__bar"></i
+                    ><i class="plvoice__bar"></i><i class="plvoice__bar"></i
+                    ><i class="plvoice__bar"></i>
+                  </div>
+                  <span class="voice-indicator" aria-hidden="true"></span>
+                </div>
+              </div>
+              <label class="field">
+                <span>Microphone</span>
+                <select id="mic-select">
+                  <option value="">System default</option>
+                </select>
+              </label>
+              <div class="meter-row">
+                <div class="meter"><div class="meter-fill" id="mic-meter"></div></div>
+                <button class="quiet small" id="enable-audio">Enable</button>
+              </div>
+              <label class="field">
+                <span>Speakers</span>
+                <select id="speaker-select">
+                  <option value="">System default</option>
+                </select>
+              </label>
+              <div class="meter-row">
+                <button class="quiet small" id="test-speaker">Test sound</button>
+                <span class="tiny" id="audio-note"></span>
+              </div>
+              <div id="volume-controls"></div>
+              <button class="quiet small" id="voice-network-access" type="button" hidden>
+                Voice network access
+              </button>
+              <a
+                class="link capture-link"
+                href="/screen-capture.html"
+                target="_blank"
+                rel="noopener"
+                >Preview my PC screen</a
+              >
+            </section>
+
+            <section class="panel people-panel">
+              <div class="panel-head">
+                <div>
+                  <h2>People</h2>
+                  <p class="muted">In your visible parties</p>
+                </div>
+              </div>
+              <div class="people" id="people-grid"></div>
+              <div class="empty small" id="people-empty"><p>No one yet.</p></div>
+            </section>
+          </aside>
+        </div>
+      </div>
+      <section id="app-hub" hidden aria-live="polite"></section>
+    </main>
+
+    <div class="callbar" id="call-panel" hidden>
+      <div class="call-left">
+        <div class="call-status-dot" id="call-dot"></div>
+        <div>
+          <div class="call-party" id="call-party-name">Party</div>
+          <div class="call-status muted" id="call-status">Connecting</div>
+        </div>
+      </div>
+      <div class="call-members" id="call-members"></div>
+      <div class="call-actions">
+        <button class="quiet" id="mute">Mute</button>
+        <button class="danger" id="leave-call">Leave</button>
+      </div>
+    </div>
+
+    <dialog id="participant-details-dialog" aria-labelledby="participant-details-title">
+      <h2 id="participant-details-title">Party participant</h2>
+      <dl class="participant-fields">
+        <div>
+          <dt>Username</dt>
+          <dd id="participant-username"></dd>
+        </div>
+        <div>
+          <dt>Platform</dt>
+          <dd id="participant-platform"></dd>
+        </div>
+        <div id="participant-ping-row" hidden>
+          <dt>Ping</dt>
+          <dd id="participant-ping"></dd>
+        </div>
+        <div>
+          <dt>Connection status</dt>
+          <dd id="participant-connection"></dd>
+        </div>
+        <div>
+          <dt>Microphone</dt>
+          <dd id="participant-muted"></dd>
+        </div>
+        <div id="participant-host-row" hidden>
+          <dt>Host / IP family</dt>
+          <dd id="participant-host"></dd>
+        </div>
+      </dl>
+      <p id="participant-note" class="tiny"></p>
+      <p id="participant-update" class="tiny" role="status"></p>
+      <form method="dialog" class="dialog-actions"><button class="quiet">Close</button></form>
+    </dialog>
+
+    <dialog id="start-party-dialog">
+      <form id="start-party-form">
+        <h2>Start a party</h2>
+        <label class="field"
+          ><span>Party name</span
+          ><input
+            id="party-name"
+            maxlength="32"
+            required
+            autocomplete="off"
+            placeholder="Your party name"
+        /></label>
+        <div class="party-settings">
+          <label class="field"
+            ><span>Who can join</span
+            ><select id="party-type">
+              <option value="open">Open — friends can join</option>
+              <option value="closed">Closed — invitation only</option>
+            </select></label
+          >
+          <label class="field"
+            ><span>Player limit</span
+            ><input id="party-size" type="number" min="2" max="16" value="16" required
+          /></label>
+        </div>
+        <label class="field"
+          ><span>Invite friends (optional)</span
+          ><input
+            id="party-friend-search"
+            type="search"
+            placeholder="Find a friend"
+            autocomplete="off"
+        /></label>
+        <div id="party-friend-list" class="party-friend-list" aria-label="Friends to invite"></div>
+        <p id="party-friend-status" class="tiny" role="status"></p>
+        <button type="button" class="quiet small" id="party-more-friends" hidden>
+          Load more friends
+        </button>
+        <label class="audio-toggle"
+          ><input id="party-join-voice" type="checkbox" checked /><span
+            >Join voice after creating</span
+          ></label
+        >
+        <p id="party-create-error" class="error" role="alert" hidden></p>
+        <div class="dialog-actions">
+          <button type="button" class="quiet" id="cancel-start-party">Cancel</button
+          ><button type="submit" class="primary" id="submit-start-party">Start party</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="connect-dialog">
+      <form id="connect-form" method="dialog">
+        <h2>Connect account</h2>
+        <p id="connect-instructions">
+          Paste your NPSSO. It stays in the local helper's memory and is never written to disk.
+        </p>
+        <a
+          class="link"
+          id="npsso-link"
+          href="https://ca.account.sony.com/api/v1/ssocookie"
+          target="_blank"
+          rel="noopener"
+          >Open NPSSO page</a
+        >
+        <input
+          id="npsso"
+          type="password"
+          autocomplete="off"
+          placeholder="NPSSO"
+          spellcheck="false"
+        />
+        <p class="error" id="connect-error" hidden></p>
+        <div class="dialog-actions">
+          <button type="button" class="quiet" id="close-dialog">Cancel</button>
+          <button type="submit" class="primary" id="submit-connect">Connect</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script type="module" src="/app.js"></script>
+    <script type="module" src="/volume-controls.js"></script>
+    <script type="module" src="/desktop-ui.js"></script>
+  </body>
+</html>

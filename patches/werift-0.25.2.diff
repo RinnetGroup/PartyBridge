@@ -1,0 +1,38 @@
+--- registry
++++ installed
+@@ -9542,8 +9542,9 @@
+   [4, "SOURCE-ADDRESS", packAddress, unpackAddress],
+   [5, "CHANGED-ADDRESS", packAddress, unpackAddress],
+   [6, "USERNAME", packString, unpackString],
+   [8, "MESSAGE-INTEGRITY", packBytes, unpackBytes],
++  [49239, "GOOG-NETWORK-INFO", packBytes, unpackBytes],
+   [9, "ERROR-CODE", packErrorCode, unpackErrorCode],
+   [
+     10,
+     "UNKNOWN-ATTRIBUTES",
+@@ -12896,9 +12897,9 @@
+     localCandidate
+   }) {
+     const txUsername = encodeTxUsername({ remoteUsername, localUsername });
+     const request = new Message(1 /* BINDING */, 0 /* REQUEST */);
+-    request.setAttribute("USERNAME", txUsername).setAttribute(
++    request.setAttribute("USERNAME", txUsername).setAttribute("GOOG-NETWORK-INFO", Buffer.from([0, 1, 0, 0])).setAttribute(
+       "PRIORITY",
+       candidatePriority("prflx", {
+         transport: localCandidate?.transport,
+         tcptype: localCandidate?.tcptype
+@@ -16965,9 +16966,13 @@
+       await this.dataChannelFlush();
+     };
+   }
+   get isServer() {
+-    return this.dtlsTransport.iceTransport.role !== "controlling";
++    // RFC 8841: the DTLS CLIENT sends the SCTP INIT (is the SCTP client). werift's
++    // original logic keyed this off the ICE controlling role, which deadlocks when
++    // we're ICE-controlled but DTLS-client (answerer to a=setup:actpass). Use the
++    // DTLS role instead, matching libwebrtc.
++    return this.dtlsTransport.role === "server";
+   }
+   channelByLabel(label) {
+     return Object.values(this.dataChannels).find((d) => d.label === label);
+   }
