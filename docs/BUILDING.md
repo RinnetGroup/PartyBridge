@@ -39,7 +39,7 @@ The release uses `%APPDATA%\PartyBridge Release`; `npm start` uses `%APPDATA%\Pa
 
 ## GitHub preparation
 
-The repository and release downloads are currently private. Keep that visibility until a separate public-release review is complete. Never add `dist`, `node_modules`, local logs, `.local`, app-data folders, tokens or extracted application packages.
+The repository and release downloads are public. Review every commit and release asset for credentials and private data before uploading. Never add `dist`, `node_modules`, local logs, `.local`, app-data folders, tokens or extracted application packages.
 
 CI runs offline tests, syntax checks, formatting and release-source verification. The **Build Windows release** workflow runs manually or after a version tag is pushed. It uploads build artifacts to that workflow run with read-only repository permissions; it does not create or publish a GitHub Release.
 
