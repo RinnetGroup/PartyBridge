@@ -20,7 +20,9 @@
   <a href="CONTRIBUTING.md">Contributing</a>
 </p>
 
-![PartyBridge desktop app before sign-in, showing party navigation and audio controls](docs/assets/partybridge.png)
+![PartyBridge demo showing a six-person voice party, speaking indicators, party discovery and smart voice leveling](docs/assets/partybridge.png)
+
+<p align="center"><sub>Demo with fictional profiles and party activity.</sub></p>
 
 PartyBridge is an unofficial desktop client for PlayStation parties. Its voice helper runs in the background, and packaged builds include the runtimes they need. You can open the app directly without a browser, terminal or separate Node.js installation.
 
