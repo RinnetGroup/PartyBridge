@@ -20,7 +20,7 @@
   <a href="CONTRIBUTING.md">Contributing</a>
 </p>
 
-![PartyBridge demo showing a six-person voice party, speaking indicators, party discovery and smart voice leveling](docs/assets/partybridge.png)
+![PartyBridge demo showing a six-person voice party, speaking indicators, party discovery and smart voice leveling](docs/assets/partybridge-demo.jpg)
 
 <p align="center"><sub>Demo with fictional profiles and party activity.</sub></p>
 

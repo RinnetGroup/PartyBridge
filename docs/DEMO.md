@@ -12,4 +12,4 @@ Open the printed localhost URL. The fixture serves the application styles and UI
 
 The page is a fixed 1440 by 1060 documentation canvas. Its layout spacing is compacted for the image; production application files are not changed. Wait for the profile images and volume controls to load, then capture the full page through the browser's page screenshot facility. This excludes the system cursor and surrounding desktop.
 
-Save the image as `docs/assets/partybridge.png`. Keep the README caption identifying the fictional demo. Do not use a signed-in account or capture a real party to regenerate this asset.
+Save the image as `docs/assets/partybridge-demo.jpg`. Keep the README caption identifying the fictional demo. Do not use a signed-in account or capture a real party to regenerate this asset.
