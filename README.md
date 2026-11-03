@@ -44,7 +44,7 @@ This is an early release using unofficial PlayStation interfaces. Sony service c
 
 ## Install
 
-**No GitHub release has been published yet.** Installers and portable builds can be built from source; versioned downloads will appear on the [Releases page](https://github.com/RinnetGroup/PartyBridge/releases) when published.
+Download the Windows installer or portable ZIP from [release 0.1.0](https://github.com/RinnetGroup/PartyBridge/releases/tag/v0.1.0). The repository and its release downloads are currently private; sign in with an account that has repository access.
 
 | File                                  | Use                                                                    |
 | ------------------------------------- | ---------------------------------------------------------------------- |

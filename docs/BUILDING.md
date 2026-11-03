@@ -39,7 +39,7 @@ The release uses `%APPDATA%\PartyBridge Release`; `npm start` uses `%APPDATA%\Pa
 
 ## GitHub preparation
 
-The source folder is ready to become a new repository. Review its files, set your Git author identity, and commit the source when ready. Never add `dist`, `node_modules`, local logs, `.local`, app-data folders, tokens or extracted application packages.
+The repository and release downloads are currently private. Keep that visibility until a separate public-release review is complete. Never add `dist`, `node_modules`, local logs, `.local`, app-data folders, tokens or extracted application packages.
 
 CI runs offline tests, syntax checks, formatting and release-source verification. The **Build Windows release** workflow runs manually or after a version tag is pushed. It uploads build artifacts to that workflow run with read-only repository permissions; it does not create or publish a GitHub Release.
 
@@ -49,7 +49,7 @@ When you decide to publish:
 2. Run the checks and build, or use the Windows build workflow.
 3. Test installation, opening, sign-in, quit, upgrade and uninstall on a clean Windows account or VM. Offline tests do not establish live Sony service compatibility.
 4. Confirm party voice in both directions and participant leave/rejoin behavior.
-5. Review source and artifact contents for private data.
+5. Review source, Git history and artifact contents for private data. Review the native OAuth client credential described in `SECURITY.md` before public distribution. Git author names and email addresses also become visible with the commit history.
 6. Create a GitHub Release for the matching version and upload only the installer, portable ZIP and `SHA256SUMS.txt`.
 
 Do not upload the unpacked app directory as source, and do not reuse a personal login profile as test data.
